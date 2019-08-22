@@ -1,4 +1,4 @@
-@import url("fontawesome-all.min.css");
+@import url("\fontawesome.min.css");
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,700,900");
 
 /*
@@ -182,13 +182,14 @@ input, select, textarea {
 		width: 68em;
 	}
 
-		@media screen and (max-width: 1680px) {
+        @media screen and (max-width: 1920px) {
 
-			.container {
-				width: 70em;
-			}
+            .container {
+                width: 100%;
+            }
+        }    
 
-		}
+		
 
 		@media screen and (max-width: 1280px) {
 
@@ -2046,25 +2047,25 @@ input, select, textarea {
 
 /* Header */
 
-	#header {
-		display: -moz-flex;
-		display: -webkit-flex;
-		display: -ms-flex;
-		display: flex;
-		-moz-align-items: center;
-		-webkit-align-items: center;
-		-ms-align-items: center;
-		align-items: center;
-		-moz-justify-content: center;
-		-webkit-justify-content: center;
-		-ms-justify-content: center;
-		justify-content: center;
-		position: relative;
-		height: 24em;
-		background: url("../../images/banner.jpg") center center;
-		background-size: cover;
-		padding: 0;
-	}
+#header {
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    -moz-align-items: center;
+    -webkit-align-items: center;
+    -ms-align-items: center;
+    align-items: center;
+    -moz-justify-content: center;
+    -webkit-justify-content: center;
+    -ms-justify-content: center;
+    justify-content: center;
+    position: relative;
+    height: 24em;
+    background: url("../Photos/steam_background.jpg") center center;
+    background-size: cover;
+    padding: 0;
+}
 
 		#header:before {
 			content: '';
@@ -2983,3 +2984,4 @@ input, select, textarea {
 						}
 
 	}
+@import url("\fontawesome.min.css");
