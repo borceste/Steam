@@ -182,19 +182,16 @@ input, select, textarea {
 		width: 68em;
 	}
 
-        @media screen and (max-width: 1920px) {
-
-            .container {
-                width: 100%;
-            }
-        }    
+            
 
 		
 
 		@media screen and (max-width: 1280px) {
 
 			.container {
-				width: calc(100% - 100px);
+				width: 100%;
+                padding: 0px 0px 0px 0px;
+                margin: 0px 0px 0px 0px;
 			}
 
 		}
@@ -2210,6 +2207,7 @@ input, select, textarea {
 				color: #fff;
 			}
 
+
 /* Intro */
 
 	#intro {
@@ -2270,14 +2268,17 @@ input, select, textarea {
 
 /* Main */
 
+/*Main-background*/
+#main-background {
+    background-image: linear-gradient(to bottom,#21265D,gray);
+}
 /* Footer */
-
-	#footer {
-		background: #282b34 url("images/overlay.png");
-		color: #eee;
-		color: rgba(255, 255, 255, 0.5);
-		padding-bottom: 6em;
-	}
+#footer {
+    background-image: linear-gradient(to bottom,gray,#8E4FD8) ;
+    color: #eee;
+    color: rgba(255, 255, 255, 0.5);
+    padding-bottom: 6em;
+}
 
 		#footer h1, #footer h2, #footer h3, #footer h4, #footer h5, #footer h6, #footer strong, #footer b, #footer a {
 			color: #fff;
@@ -2984,4 +2985,12 @@ input, select, textarea {
 						}
 
 	}
+
+/*Make site visible*/
+
+html {
+    visibility: visible;
+    opacity: 1;
+}
+
 @import url("\fontawesome.min.css");
