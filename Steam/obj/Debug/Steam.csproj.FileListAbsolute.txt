@@ -78,7 +78,6 @@ D:\Finki\4_Semestar\Internet tehnologii\ProektSteam\ProektSteam\Steam\Steam\Stea
 D:\Finki\4_Semestar\Internet tehnologii\ProektSteam\ProektSteam\Steam\Steam\Steam\obj\Debug\Steam.csproj.CopyComplete
 D:\Finki\4_Semestar\Internet tehnologii\ProektSteam\ProektSteam\Steam\Steam\Steam\obj\Debug\Steam.dll
 D:\Finki\4_Semestar\Internet tehnologii\ProektSteam\ProektSteam\Steam\Steam\Steam\obj\Debug\Steam.pdb
-C:\Users\vladi\Desktop\Steam\Steam\Steam\bin\Steam.dll.config
 C:\Users\vladi\Desktop\Steam\Steam\Steam\bin\Steam.dll
 C:\Users\vladi\Desktop\Steam\Steam\Steam\bin\Steam.pdb
 C:\Users\vladi\Desktop\Steam\Steam\Steam\bin\roslyn\csc.exe

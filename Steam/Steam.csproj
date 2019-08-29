@@ -133,12 +133,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-<<<<<<< HEAD
+
     <Compile Include="DataAccessLayer\DataClass.cs" />
     <Compile Include="DataAccessLayer\DataInitializer.cs" />
-=======
+
     <Compile Include="Controllers\LegalInfomationController.cs" />
->>>>>>> 653ef3a9ff3dbdeb3576ef08e7e01976f15e8548
+
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -308,7 +308,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
-    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VisualStudioVersion Condition="'$(VisualfStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
