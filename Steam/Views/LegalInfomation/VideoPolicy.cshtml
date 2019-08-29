@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "VideoPolicy";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Styles.Render(@"~\Content\CSS\hrBackground.css")
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+<div id="container">
+    <h1 id="title">VIDEO POLICY</h1>
+    <hr class="hrLine" />
+    <div id="content" class=".col-md-6 .col-md-offset-2">
+        <p>
+            <h4>VALVE VIDEO POLICY</h4>
+        <p>
+            We encourage our users to make videos using
+            Valve game content, such as playthrough or
+            instruction videos or SFM movies. We are fine
+            with publishing these videos to your website or
+            YouTube or similar video sharing services. We're
+            not fine with taking assets from our games
+            (e.g. voice, music, items) and distributing
+            those separately.
+        </p>
+        <p>
+            Use of our content in videos must be non-commercial.
+            By that we mean you can't charge users to view or
+            access your videos. You also can't sell or license
+            your videos to others for a payment of any kind.
+        </p>
+        <p>
+            You are free to monetize your videos
+            via the YouTube partner program and similar
+            programs on other video sharing sites. Please
+            don't ask us to write YouTube and tell them its
+            fine with us to post a particular video using
+            Valve content. It's not possible to respond to
+            each such request. Point them to this page.
+        </p>
+        <p>
+            Of course this policy applies only to Valve content.
+            If you include someone else's content in your video,
+            such as music, you will have to get permission from
+            the owner.
+        </p>
+        <p>
+            @Html.ActionLink("Back to Valve Legal Info", "Index", "LegalInfomation")
+        </p>
+        </p>
+
+    </div>
+</div>
+
+@*Scripts.Render("~/bundles/bootstrap")*@
