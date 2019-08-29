@@ -1,0 +1,27 @@
+﻿.container{
+    padding:10em 0em 10em 5em;
+}
+
+#content {
+    padding: 12px 2%;
+    line-height: 20px;
+    margin-bottom: 50px;
+    color: #a4b0be;
+    background-color: #111735;
+
+}
+
+h4{
+    color:white;
+    font-size:large;
+}
+
+.hrLine {
+    border-color: inherit;
+    color: red;
+    background-color: red;
+}
+#title{
+    font-size:50px;
+    color:white;
+}

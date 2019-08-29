@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Styles.Render(@"~\Content\bootstrap.min.css")
+@Styles.Render(@"~\Content\CSS\hrBackground.css")
+@Styles.Render("~/Content/css")
+<div id="container">
+    <h1 id="title">LEGAL INFO</h1>
+    <hr class="hrLine" />
+    <div id="content" class=".col-md-4 .col-md-offset-2">
+        <p>
+            <h4>COPYRIGHT</h4>
+        <p>
+            © 2019 Valve Corporation. All rights reserved.
+            Valve, the Valve logo, Half-Life, the Half-Life logo,
+            the Lambda logo, Steam, the Steam logo, Team Fortress,
+            the Team Fortress logo, Opposing Force, Day of Defeat,
+            the Day of Defeat logo, Counter-Strike, the Counter-Strike logo,
+            Source, the Source logo, Counter-Strike: Condition Zero, Portal, the Portal logo, Dota, the Dota 2 logo, and Defense of the Ancients are trademarks and/or registered trademarks of Valve Corporation.
+            All other trademarks are property of their respective owners.
+        </p>
+        <p>
+            <h4>VALVE VIDEO POLICY</h4>
+        <p>@Html.ActionLink("Click here for information.", "VideoPolicy", "LegalInfomation")</p>
+        </p>
+        <p>
+        <p>
+            <h4>THIRD PARTY LEGAL NOTICES</h4>
+        </p>
+        <p>
+            Steam and other Valve products distributed via Steam
+            use certain third party materials that require notifications
+            about their license terms. You can find a list of these
+            notifications in the file called ThirdPartyLegalNotices.doc
+            distributed with the Steam client and/or a particular Valve
+            product. Where license terms require Valve to make source code
+            available for redistribution,
+            the code may be found
+            <a href="https://developer.valvesoftware.com/wiki/Category:Valve_Open_Source">here</a>.
+        </p>
+        </p>
+        <p>
+            <h4>CLAIMS OF COPYRIGHT INFRINGEMENT</h4>
+        <p>
+            Valve respects the intellectual property rights of others,
+            and we ask that everyone using our internet sites and services
+            do the same. Anyone who believes that their work has been reproduced
+            in one of our internet sites or services in a way that constitutes
+            copyright infringement may notify Valve via our contact page.
+        </p>
+        <p>More information about U.S. copyright law can be found at the <a href="http://lcweb.loc.gov/copyright/">United States Copyright Office</a> </p>
+        </p>
+
+    </div>
+</div>

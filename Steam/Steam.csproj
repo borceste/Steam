@@ -133,8 +133,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+<<<<<<< HEAD
     <Compile Include="DataAccessLayer\DataClass.cs" />
     <Compile Include="DataAccessLayer\DataInitializer.cs" />
+=======
+    <Compile Include="Controllers\LegalInfomationController.cs" />
+>>>>>>> 653ef3a9ff3dbdeb3576ef08e7e01976f15e8548
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -171,6 +175,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\CSS\hrBackground.css" />
     <Content Include="Content\layoutCSS\fontawesome-all.min.css" />
     <Content Include="Content\layoutCSS\fontawesome.min.css" />
     <Content Include="Content\layoutCSS\images\overlay.png" />
@@ -182,6 +187,7 @@
     <Content Include="Content\layoutJS\jquery.min.js" />
     <Content Include="Content\layoutJS\main.js" />
     <Content Include="Content\layoutJS\util.js" />
+    <Content Include="Content\Photos\logo_valve_footer.png" />
     <Content Include="Content\Photos\steam_background.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -261,6 +267,12 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\LegalInfomation\Index.cshtml" />
+    <Content Include="Views\LegalInfomation\VideoPolicy.cshtml" />
+    <Content Include="Views\LegalInfomation\PrivacyPolicyAgreement.cshtml" />
+    <Content Include="Views\LegalInfomation\SteamSubscriberAgreement.cshtml" />
+    <Content Include="Views\LegalInfomation\SteamRefunds.cshtml" />
+    <Content Include="Views\LegalInfomation\RefundList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
