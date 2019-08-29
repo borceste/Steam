@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Drawing;
 using System.Linq;
 using System.Web;
@@ -9,14 +10,16 @@ namespace Steam.Models
     public class User
     {   
         //Add getGame for single game etc.
-        private String nickname;
-        private Image avatar;
-        private String info;
-        private int level;
-        private List<Game> ownedGames;
-        private List<Game> wishlistedGames;
-        private List<Review> reviews;
-        private List<Comment> comments;
+        [Key]
+        public int Id { get; set; }
+        public String nickname { get; set; }
+        public string avatar { get; set; }
+        public String info { get; set; }
+        public int level { get; set; }
+        public List<Game> ownedGames { get; set; }
+        public List<Game> wishlistedGames { get; set; }
+        public List<Review> reviews { get; set; }
+        private List<Comment> comments { get; set; }
         public User()
         {
             info = "No information given.";
@@ -26,7 +29,7 @@ namespace Steam.Models
             this.reviews = new List<Review>();
             this.comments = new List<Comment>();
         }
-        public String getNickname()
+        /*public String getNickname()
         {
             return this.nickname;
         }
@@ -147,6 +150,6 @@ namespace Steam.Models
         public void addComment(Comment comment)
         {
             this.comments.Add(comment);
-        }
+        }*/
     }
 }

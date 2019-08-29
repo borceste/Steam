@@ -45,6 +45,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -127,9 +133,32 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="DataAccessLayer\DataClass.cs" />
+    <Compile Include="DataAccessLayer\DataInitializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908280953053_Initial.cs" />
+    <Compile Include="Migrations\201908280953053_Initial.Designer.cs">
+      <DependentUpon>201908280953053_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908281041167_NewVersionInitial.cs" />
+    <Compile Include="Migrations\201908281041167_NewVersionInitial.Designer.cs">
+      <DependentUpon>201908281041167_NewVersionInitial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908281231161_Initial1.cs" />
+    <Compile Include="Migrations\201908281231161_Initial1.Designer.cs">
+      <DependentUpon>201908281231161_Initial1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908281242432_Initial2.cs" />
+    <Compile Include="Migrations\201908281242432_Initial2.Designer.cs">
+      <DependentUpon>201908281242432_Initial2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908281424333_Initial3.cs" />
+    <Compile Include="Migrations\201908281424333_Initial3.Designer.cs">
+      <DependentUpon>201908281424333_Initial3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\Genre.cs" />
@@ -158,6 +187,51 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\BorderOfficer\BorderOfficerImage1.png" />
+    <Content Include="Images\BorderOfficer\BorderOfficerImage2.png" />
+    <Content Include="Images\BorderOfficer\BorderOfficerImage3.png" />
+    <Content Include="Images\BorderOfficer\BorderOfficerImage4.png" />
+    <Content Include="Images\BorderOfficer\BorderOfficerImage5.png" />
+    <Content Include="Images\Dirt4\Dirt4Image1.png" />
+    <Content Include="Images\Dirt4\Dirt4Image2.png" />
+    <Content Include="Images\Dirt4\Dirt4Image3.png" />
+    <Content Include="Images\Dirt4\Dirt4Image4.png" />
+    <Content Include="Images\Dirt4\Dirt4Image5.png" />
+    <Content Include="Images\Dota2\Dota2Image1.png" />
+    <Content Include="Images\Dota2\Dota2Image2.png" />
+    <Content Include="Images\Dota2\Dota2Image3.png" />
+    <Content Include="Images\Dota2\Dota2Image4.png" />
+    <Content Include="Images\Dota2\Dota2Image5png.png" />
+    <Content Include="Images\Hentai\HentaiImage1.png" />
+    <Content Include="Images\Hentai\HentaiImage2.png" />
+    <Content Include="Images\Hentai\HentaiImage3.png" />
+    <Content Include="Images\Hentai\HentaiImage4.png" />
+    <Content Include="Images\Hentai\HentaiImage5.png" />
+    <Content Include="Images\Magicka2\Magicka2Image1.png" />
+    <Content Include="Images\Magicka2\Magicka2Image2.png" />
+    <Content Include="Images\Magicka2\Magicka2Image3.png" />
+    <Content Include="Images\Magicka2\Magicka2Image4.png" />
+    <Content Include="Images\Magicka2\Magicka2Image5.png" />
+    <Content Include="Images\Slender\SlenderImage1.png" />
+    <Content Include="Images\Slender\SlenderImage2.png" />
+    <Content Include="Images\Slender\SlenderImage3.png" />
+    <Content Include="Images\Slender\SlenderImage4.png" />
+    <Content Include="Images\Slender\SlenderImage5.png" />
+    <Content Include="Images\Supraland\SupralandImage1.png" />
+    <Content Include="Images\Supraland\SupralandImage2.png" />
+    <Content Include="Images\Supraland\SupralandImage3.png" />
+    <Content Include="Images\Supraland\SupralandImage4.png" />
+    <Content Include="Images\Supraland\SupralandImage5.png" />
+    <Content Include="Images\TombRaider\TombRaiderImage1.png" />
+    <Content Include="Images\TombRaider\TombRaiderImage2.png" />
+    <Content Include="Images\TombRaider\TombRaiderImage3.png" />
+    <Content Include="Images\TombRaider\TombRaiderImage4.png" />
+    <Content Include="Images\TombRaider\TombRaiderImage5.png" />
+    <Content Include="Images\Witcher3\Witcher3Image1.png" />
+    <Content Include="Images\Witcher3\Witcher3Image2.png" />
+    <Content Include="Images\Witcher3\Witcher3Image3.png" />
+    <Content Include="Images\Witcher3\Witcher3Image4.png" />
+    <Content Include="Images\Witcher3\Witcher3Image5.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -203,6 +277,23 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201908280953053_Initial.resx">
+      <DependentUpon>201908280953053_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908281041167_NewVersionInitial.resx">
+      <DependentUpon>201908281041167_NewVersionInitial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908281231161_Initial1.resx">
+      <DependentUpon>201908281231161_Initial1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908281242432_Initial2.resx">
+      <DependentUpon>201908281242432_Initial2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908281424333_Initial3.resx">
+      <DependentUpon>201908281424333_Initial3.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -3,30 +3,79 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Drawing;
+using System.ComponentModel.DataAnnotations;
 
 namespace Steam.Models
 {
     public class Game
     {
-        private String name;
-        private float price;
-        private List<Image> images;
-        private String description;
-        private String developer;
-        private float rating;
-        private List<Review> reviews;
-        private float discount;
-        private Genre genre;
+        [Key]
+        public int Id { get; set; }
+        public String name { get; set; }
+        public float price { get; set; }
+        public List<string> images { get; set; }
+        public string coverImage { get; set; }
+        public String description { get; set; }
+        public String developer { get; set; }
+        public float rating { get; set; }
+        public List<Review> reviews { get; set; }
+        public float discount { get; set; }
+        public Genre genre { get; set; }
+        public int sold { get; set; }
+        public DateTime dateAdded { get; set; }
+        public Game(int Id, String name, float price, List<string> images,string coverImage,
+            string description, String developer, float rating, List<Review> reviews,
+            float discount, Genre genre, int sold, DateTime dateAdded)
+        {
+        this.Id = Id;
+        this.name = name;
+        this.price = price;
+        this.images = images;
+        this.coverImage = coverImage;
+        this.description = description;
+        this.developer = developer;
+        this.rating = rating;
+        this.reviews = reviews;
+        this.discount = discount;
+        this.genre = genre;
+        this.sold = sold;
+        this.dateAdded = dateAdded;
+    }
         public Game()
         {
             discount = 0;
             price = 0;
-            images = new List<Image>();
+            images = new List<string>();
             reviews = new List<Review>();
+            sold = 0;
+            dateAdded = DateTime.Now;
         }
-
+        /*
+        public int getID()
+        {
+            return Id;
+        }
+        public void setID(int ID)
+        {
+            this.Id = ID;
+        }
         
-
+        public DateTime  getdateAdded()
+        {
+            return dateAdded;
+        }
+        public void setdateAdded(DateTime newDate)
+        {
+            this.dateAdded = newDate;
+        } 
+        public void setSold(int sold)
+        {
+            this.sold = sold;
+        }
+        public int getSold()
+        {
+            return sold;
+        }
         public String getName()
         {
             return name;
@@ -40,6 +89,10 @@ namespace Steam.Models
         public List<Image> getImages()
         {
             return images;
+        }
+        public Image getCoverImage()
+        {
+            return coverImage;
         }
 
         public String getDescription()
@@ -119,6 +172,6 @@ namespace Steam.Models
         public Genre getGenre()
         {
             return this.genre;
-        }
+        }*/
     }
 }

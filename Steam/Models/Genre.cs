@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -7,8 +8,10 @@ namespace Steam.Models
 {
     public class Genre
     {
-        private String name;
-        private List<Game> games;
+        [Key]
+        public int Id { get; set; }
+        public String name { set; get; }
+        public List<Game> games { get; set; }
         public Genre()
         {
             games = new List<Game>();
@@ -17,7 +20,7 @@ namespace Steam.Models
         {
             this.name = name;
         }
-        public String getName()
+        /*public String getName()
         {
             return this.name;
         }
@@ -49,6 +52,6 @@ namespace Steam.Models
             {
                 this.games.Add(game);
             }
-        }
+        }*/
     }
 }

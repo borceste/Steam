@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -7,10 +8,12 @@ namespace Steam.Models
 {
     public class Review
     {
-        private User user;
-        private String review;
-        private float rating;
-        private DateTime date;
+        [Key]
+        public int Id { get; set; }
+        public User user { get; set; }
+        public String review { get; set; }
+        public float rating { get; set; }
+        public DateTime date { get; set; }
         public Review()
         {
             date = DateTime.Now;
@@ -22,7 +25,7 @@ namespace Steam.Models
             this.rating = rating;
             this.date = DateTime.Now;
         }
-        public void setUser(User user)
+        /*public void setUser(User user)
         {
             this.user = user;
         }
@@ -49,6 +52,6 @@ namespace Steam.Models
         public DateTime getDate()
         {
             return this.date;
-        }
+        }*/
     }
 }
