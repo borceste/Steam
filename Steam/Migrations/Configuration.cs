@@ -5,8 +5,106 @@ namespace Steam.Migrations
     using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
+    using System.IO;
     using System.Linq;
+    using System.Text;
+    using System.Xml;
+    using System.Xml.Serialization;
 
+
+    public static class XmlHelper
+    {
+        public static bool NewLineOnAttributes { get; set; }
+        /// <summary>
+        /// Serializes an object to an XML string, using the specified namespaces.
+        /// </summary>
+        public static string ToXml(object obj, XmlSerializerNamespaces ns)
+        {
+            Type T = obj.GetType();
+
+            var xs = new XmlSerializer(T);
+            var ws = new XmlWriterSettings { Indent = true, NewLineOnAttributes = NewLineOnAttributes, OmitXmlDeclaration = true };
+
+            var sb = new StringBuilder();
+            using (XmlWriter writer = XmlWriter.Create(sb, ws))
+            {
+                xs.Serialize(writer, obj, ns);
+            }
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// Serializes an object to an XML string.
+        /// </summary>
+        public static string ToXml(object obj)
+        {
+            var ns = new XmlSerializerNamespaces();
+            ns.Add("", "");
+            return ToXml(obj, ns);
+        }
+
+        /// <summary>
+        /// Deserializes an object from an XML string.
+        /// </summary>
+        public static T FromXml<T>(string xml)
+        {
+            XmlSerializer xs = new XmlSerializer(typeof(T));
+            using (StringReader sr = new StringReader(xml))
+            {
+                return (T)xs.Deserialize(sr);
+            }
+        }
+
+        /// <summary>
+        /// Deserializes an object from an XML string, using the specified type name.
+        /// </summary>
+        public static object FromXml(string xml, string typeName)
+        {
+            Type T = Type.GetType(typeName);
+            XmlSerializer xs = new XmlSerializer(T);
+            using (StringReader sr = new StringReader(xml))
+            {
+                return xs.Deserialize(sr);
+            }
+        }
+
+        /// <summary>
+        /// Serializes an object to an XML file.
+        /// </summary>
+        public static void ToXmlFile(Object obj, string filePath)
+        {
+            var xs = new XmlSerializer(obj.GetType());
+            var ns = new XmlSerializerNamespaces();
+            var ws = new XmlWriterSettings { Indent = true, NewLineOnAttributes = NewLineOnAttributes, OmitXmlDeclaration = true };
+            ns.Add("", "");
+
+            using (XmlWriter writer = XmlWriter.Create(filePath, ws))
+            {
+                xs.Serialize(writer, obj);
+            }
+        }
+
+        /// <summary>
+        /// Deserializes an object from an XML file.
+        /// </summary>
+        public static T FromXmlFile<T>(string filePath)
+        {
+            StreamReader sr = new StreamReader(filePath);
+            try
+            {
+                var result = FromXml<T>(sr.ReadToEnd());
+                return result;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("There was an error attempting to read the file " + filePath + "\n\n" + e.InnerException.Message);
+            }
+            finally
+            {
+                sr.Close();
+            }
+        }
+    }
 
     internal sealed class Configuration : DbMigrationsConfiguration<Steam.DataAccessLayer.DataClass>
     {
@@ -14,7 +112,7 @@ namespace Steam.Migrations
         {
             AutomaticMigrationsEnabled = false;
         }
-
+        
         protected override void Seed(Steam.DataAccessLayer.DataClass context)
         {
             //  This method will be called after migrating to the latest version.
@@ -53,7 +151,7 @@ namespace Steam.Migrations
             Dota2Images.Add("https://steamcdn-a.akamaihd.net/steam/apps/570/ss_7ab506679d42bfc0c0e40639887176494e0466d9.1920x1080.jpg?t=1561594389");
             Dota2Images.Add("https://steamcdn-a.akamaihd.net/steam/apps/570/ss_c9118375a2400278590f29a3537769c986ef6e39.1920x1080.jpg?t=1561594389");
             Dota2Images.Add("https://steamcdn-a.akamaihd.net/steam/apps/570/ss_f9ebafedaf2d5cfb80ef1f74baa18eb08cad6494.1920x1080.jpg?t=1561594389");
-
+            
 
             Magicka2Images.Add("https://steamcdn-a.akamaihd.net/steam/apps/238370/ss_41b744c738cc2d394378ccd1b1bf5e1db0163b64.1920x1080.jpg?t=1561043582");
             Magicka2Images.Add("https://steamcdn-a.akamaihd.net/steam/apps/238370/ss_ab78099a447154ad202a1043a2a051c35df7a586.1920x1080.jpg?t=1561043582");
@@ -126,10 +224,13 @@ namespace Steam.Migrations
                 "Learn the ropes playing co - op vs.bots.Sharpen your skills in the hero demo mode. " +
                 "Jump into the behavior-and skill - based matchmaking system that ensures you'll" +
                 "be matched with the right players each game.";
+            string Dota2Name = "Dota2";
             string Dota2Developer = "VALVE Corporation";
             Genre MOBA = new Genre("MOBA");
             List<Review> Dota2Reviews = new List<Review>();
             DateTime Dota2Date = DateTime.Now;
+            string Dota2FilePath = XmlHelper.ToXml(Dota2Images);
+            //XmlHelper.ToXmlFile(Dota2Images, Dota2FilePath);
 
             // Magicka2
 
@@ -140,10 +241,14 @@ namespace Steam.Migrations
                 " up to four Wizards, and their guide Vlad, will traverse Midgård armed with the next iteration" +
                 " of the famous Magicka dynamic spellcasting system, as players reprise their roles as the most overpowered," +
                 " unpredictably funny Wizards ever known to fantasy!";
+            string Magicka2Name = "Magicka2.xml";
             string Magicka2Developer = "Piece Interactive";
             Genre Adventure = new Genre("Adventure");
             List<Review> Magicka2Reviews = new List<Review>();
             DateTime Magicka2Date = DateTime.Now;
+            string Magicka2FilePath = XmlHelper.ToXml(Magicka2Images);
+
+            //XmlHelper.ToXmlFile(Magicka2Images, Magicka2FilePath);
 
 
             // Supraland
@@ -153,10 +258,14 @@ namespace Steam.Migrations
                 " Metroid and Portal.Supraland assumes that you are intelligent and lets you play independently. The story is minimal," +
                 " gives you an overarching goal to pursue, and then sets you free. Despite child friendly visuals," +
                 " the game targets experienced players. Playtime: ~12-25h";
+            string SupralandName = "Supraland";
             string SupralandDeveloper = "Supra Games";
             Genre Indie = new Genre("Indie");
             List<Review> SupralandReviews = new List<Review>();
             DateTime SupralandDate = DateTime.Now;
+            string SupralandFilePath = XmlHelper.ToXml(SupralandImages);
+
+            //XmlHelper.ToXmlFile(SupralandImages, SupralandFilePath);
 
             // Witcher 3 
 
@@ -165,10 +274,15 @@ namespace Steam.Migrations
                 " full of meaningful choices and impactful consequences. In The Witcher, you play as professional monster hunter Geralt of Rivia" +
                 " tasked with finding a child of prophecy in a vast open world rich with merchant cities, pirate islands, dangerous mountain passes," +
                 " and forgotten caverns to explore.";
+            string Witcher3Name = "Witcher3";
             string Witcher3Developer = "CD PROJEKT RED";
             Genre OpenWorld = new Genre("OpenWorld");
             List<Review> Witcher3Reviews = new List<Review>();
             DateTime Witcher3Date = DateTime.Now;
+            string Witcher3FilePath = XmlHelper.ToXml(Witcher3Images);
+
+            
+
 
 
             // BorderOfficer
@@ -182,10 +296,14 @@ namespace Steam.Migrations
                 "You have to decide who can enter and who can not enter Stavronzkaya. The state publishes new announcements according" +
                 " to their own interests and changes the rules accordingly. You should follow these announcements and question people" +
                 " according to the rules.";
+            string BorderOfficerName = "BorderOfficer";
             string BorderOfficerDeveloper = "Cocopo";
             Genre Simulation = new Genre("Simulation");
             List<Review> BorderOfficerReviews = new List<Review>();
             DateTime BorderOfficerDate = DateTime.Now;
+            string BorderOfficerFilePath = XmlHelper.ToXml(BorderOfficerImages);
+
+            //XmlHelper.ToXmlFile(BorderOfficerImages, BorderOfficerFilePath);
 
 
             // DIRT 4
@@ -198,18 +316,26 @@ namespace Steam.Migrations
                 " You choose your location and set the route parameters, then Your Stage does the hard work to create a unique rally stage that you can race," +
                 " share with your friends and then challenge them to beat your time. Your Stage allows experienced rally players to create longer, more technical routes," +
                 " whilst newcomers can create simpler shorter routes as they hone their skills. ";
+            string Dirt4Name = "Dirt4";
             string Dirt4Developer = "Codemasters";
             Genre Racing = new Genre("Racing");
             List<Review> Dirt4Reviews = new List<Review>();
             DateTime Dirt4Date = DateTime.Now;
+            string Dirt4FilePath = XmlHelper.ToXml(Dirt4Images);
+
+            //XmlHelper.ToXmlFile(Dirt4Images, Dirt4FilePath);
 
             // HENTAI
 
             string HentaiDescription = "As supreme military general, lead your girls to against enemy and take back freedom for your planet...";
+            string HentaiName = "Hentai";
             string HentaiDeveloper = "Mature Games";
             Genre Anime = new Genre("Anime");
             List<Review> HentaiReviews = new List<Review>();
             DateTime HentaiDate = DateTime.Now;
+            string HentaiFilePath = XmlHelper.ToXml(HentaiImages);
+
+            //XmlHelper.ToXmlFile(HentaiImages, HentaiFilePath);
 
             // TombRaider
 
@@ -217,11 +343,14 @@ namespace Steam.Migrations
                 " In Shadow of the Tomb Raider, Lara must master a deadly jungle, overcome terrifying tombs," +
                 " and persevere through her darkest hour. As she races to save the world from a Maya apocalypse," +
                 " Lara will ultimately be forged into the Tomb Raider she is destined to be.";
-
+            string TombRaiderName = "TombRaider";
             string TombRaiderDeveloper = "Eidos-Montreal";
             Genre Action = new Genre("Action");
             List<Review> TombRaiderReviews = new List<Review>();
             DateTime TombRaiderDate = DateTime.Now;
+            string TombRaiderFilePath = XmlHelper.ToXml(TombRaiderImages);
+
+            //XmlHelper.ToXmlFile(TombRaiderImages, TombRaiderFilePath);
 
 
             //Slender
@@ -229,24 +358,27 @@ namespace Steam.Migrations
             string SlenderDescription = "You're on your own. No one to come for you. No one to help you. No one to hear you scream." +
                 " Slender: The Arrival is the official videogame adaption of Slender Man, developed in collaboration with Eric \"Victor Surge\" Knudson," +
                 " creator of the paranormal phenomenon that has been terrifying the curious-minded around the world since its inception, with Mark Hadley and Blue Isle Studios.";
+            string SlenderName = "Slender";
             string SlenderDeveloper = "Blue Isle Studios";
             Genre Horror = new Genre("Horror");
             List<Review> SlenderReviews = new List<Review>();
             DateTime SlenderDate = DateTime.Now;
+            string SlenderFilePath = XmlHelper.ToXml(SlenderImages);
 
 
+            //XmlHelper.ToXmlFile(SlenderImages, SlenderFilePath);
 
             var gamesList = new List<Game>
             {
-                new Game{Id = 0,name="Dota 2", price = 0, images=Dota2Images,coverImage=Dota2Image, description=Dota2Description, developer=Dota2Developer, rating=0, reviews=Dota2Reviews,discount=0,genre=MOBA,sold=0,dateAdded=Dota2Date},
-                new Game{Id = 1,name="Magicka 2", price = 14.99f, images=Magicka2Images,coverImage=Magicka2Image, description=Magicka2Description, developer=Magicka2Developer, rating=0, reviews=Magicka2Reviews,discount=0,genre=Adventure,sold=0,dateAdded=Magicka2Date},
-                new Game{Id = 2,name="Supraland", price = 19.99f, images=SupralandImages,coverImage=SupralandImage, description=SupralandDescripton, developer=SupralandDeveloper, rating=0, reviews=SupralandReviews,discount=0,genre=Indie,sold=0,dateAdded=SupralandDate},
-                new Game{Id = 3,name="Witcher 3", price = 29.99f, images=Witcher3Images,coverImage=Witcher3Image, description=Witcher3Description, developer=Witcher3Developer, rating=0, reviews=Witcher3Reviews,discount=0,genre=OpenWorld,sold=0,dateAdded=Witcher3Date},
-                new Game{Id = 4,name="Border Officer", price = 8.19f, images=BorderOfficerImages,coverImage=BorderOfficerImage, description=BorderOfficerDescription, developer=BorderOfficerDeveloper, rating=0, reviews=BorderOfficerReviews,discount=0,genre=Simulation,sold=0,dateAdded=BorderOfficerDate},
-                new Game{Id = 5,name="Dirt 4", price = 54.99f, images=Dirt4Images,coverImage=Dirt4Image, description=Dirt4Description, developer=Dirt4Developer, rating=0, reviews=Dirt4Reviews,discount=0,genre=Racing,sold=0,dateAdded=Dirt4Date},
-                new Game{Id = 6,name="Hentai", price = 1.59f, images=HentaiImages,coverImage=HentaiImage, description=HentaiDescription, developer=HentaiDeveloper, rating=0, reviews=HentaiReviews,discount=0,genre=Anime,sold=0,dateAdded=HentaiDate},
-                new Game{Id = 7,name="Slender", price = 9.99f, images=SlenderImages,coverImage=SlenderImage, description=SlenderDescription, developer=SlenderDeveloper, rating=0, reviews=SlenderReviews,discount=0,genre=Horror,sold=0,dateAdded=SlenderDate},
-                new Game{Id = 8,name="TombRaider", price = 59.99f, images=TombRaiderImages,coverImage=TombRaiderImage, description=TombRaiderDescription, developer=TombRaiderDeveloper, rating=0, reviews=TombRaiderReviews,discount=0,genre=Action,sold=0,dateAdded=TombRaiderDate},
+                new Game{Id = 0,name="Dota 2", price = 0, images = new List<string>(), listOfImages = Dota2FilePath, coverImage=Dota2Image, description=Dota2Description, developer=Dota2Developer, rating=0, reviews=Dota2Reviews,discount=0,genre=MOBA,sold=0,dateAdded=Dota2Date},
+                new Game{Id = 1,name="Magicka 2", price = 14.99f, images = new List<string>(), listOfImages = Magicka2FilePath, coverImage=Magicka2Image, description=Magicka2Description, developer=Magicka2Developer, rating=0, reviews=Magicka2Reviews,discount=0,genre=Adventure,sold=0,dateAdded=Magicka2Date},
+                new Game{Id = 2,name="Supraland", price = 19.99f, images = new List<string>(), listOfImages = SupralandFilePath, coverImage=SupralandImage, description=SupralandDescripton, developer=SupralandDeveloper, rating=0, reviews=SupralandReviews,discount=0,genre=Indie,sold=0,dateAdded=SupralandDate},
+                new Game{Id = 3,name="Witcher 3", price = 29.99f, images = new List<string>(), listOfImages = Witcher3FilePath, coverImage=Witcher3Image, description=Witcher3Description, developer=Witcher3Developer, rating=0, reviews=Witcher3Reviews,discount=0,genre=OpenWorld,sold=0,dateAdded=Witcher3Date},
+                new Game{Id = 4,name="Border Officer", price = 8.19f, images = new List<string>(), listOfImages = BorderOfficerFilePath, coverImage=BorderOfficerImage, description=BorderOfficerDescription, developer=BorderOfficerDeveloper, rating=0, reviews=BorderOfficerReviews,discount=0,genre=Simulation,sold=0,dateAdded=BorderOfficerDate},
+                new Game{Id = 5,name="Dirt 4", price = 54.99f, images = new List<string>(), listOfImages = Dirt4FilePath, coverImage=Dirt4Image, description=Dirt4Description, developer=Dirt4Developer, rating=0, reviews=Dirt4Reviews,discount=0,genre=Racing,sold=0,dateAdded=Dirt4Date},
+                new Game{Id = 6,name="Hentai", price = 1.59f, images = new List<string>(), listOfImages = HentaiFilePath, coverImage=HentaiImage, description=HentaiDescription, developer=HentaiDeveloper, rating=0, reviews=HentaiReviews,discount=0,genre=Anime,sold=0,dateAdded=HentaiDate},
+                new Game{Id = 7,name="Slender", price = 9.99f, images = new List<string>(), listOfImages = SlenderFilePath, coverImage=SlenderImage, description=SlenderDescription, developer=SlenderDeveloper, rating=0, reviews=SlenderReviews,discount=0,genre=Horror,sold=0,dateAdded=SlenderDate},
+                new Game{Id = 8,name="TombRaider", price = 59.99f, images = new List<string>(), listOfImages = TombRaiderFilePath, coverImage=TombRaiderImage, description=TombRaiderDescription, developer=TombRaiderDeveloper, rating=0, reviews=TombRaiderReviews,discount=0,genre=Action,sold=0,dateAdded=TombRaiderDate},
 
             };
 

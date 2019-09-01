@@ -43,7 +43,7 @@
                     @foreach (var item in Model)
                     {
                         <div class="item @(first?Html.Raw("active"):Html.Raw(""))">
-                            <img src="@item.coverImage" />
+                            <img src="@item.images[1]" />
                         </div>
                         first = false;
                     }

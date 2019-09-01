@@ -167,3 +167,7 @@ C:\Users\vladi\Desktop\Steam\Steam\Steam\obj\Debug\Steam.Migrations.NewVersionIn
 C:\Users\vladi\Desktop\Steam\Steam\Steam\obj\Debug\Steam.Migrations.Initial1.resources
 C:\Users\vladi\Desktop\Steam\Steam\Steam\obj\Debug\Steam.Migrations.Initial2.resources
 C:\Users\vladi\Desktop\Steam\Steam\Steam\obj\Debug\Steam.Migrations.Initial3.resources
+C:\Users\vladi\Desktop\Steam\Steam\Steam\obj\Debug\Steam.Migrations.XmlAdded.resources
+C:\Users\vladi\Desktop\Steam\Steam\Steam\obj\Debug\Steam.Migrations.XmlAdded1.resources
+C:\Users\vladi\Desktop\Steam\Steam\Steam\obj\Debug\Steam.Migrations.XmlAdded2.resources
+C:\Users\vladi\Desktop\Steam\Steam\Steam\obj\Debug\Steam.Migrations.SomethingVeryNew.resources

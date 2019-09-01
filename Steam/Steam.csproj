@@ -133,12 +133,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-
     <Compile Include="DataAccessLayer\DataClass.cs" />
     <Compile Include="DataAccessLayer\DataInitializer.cs" />
-
     <Compile Include="Controllers\LegalInfomationController.cs" />
-
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -161,6 +158,22 @@
     <Compile Include="Migrations\201908281424333_Initial3.cs" />
     <Compile Include="Migrations\201908281424333_Initial3.Designer.cs">
       <DependentUpon>201908281424333_Initial3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909011919032_XmlAdded.cs" />
+    <Compile Include="Migrations\201909011919032_XmlAdded.Designer.cs">
+      <DependentUpon>201909011919032_XmlAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909011928120_XmlAdded1.cs" />
+    <Compile Include="Migrations\201909011928120_XmlAdded1.Designer.cs">
+      <DependentUpon>201909011928120_XmlAdded1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909011939051_XmlAdded2.cs" />
+    <Compile Include="Migrations\201909011939051_XmlAdded2.Designer.cs">
+      <DependentUpon>201909011939051_XmlAdded2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909012016145_SomethingVeryNew.cs" />
+    <Compile Include="Migrations\201909012016145_SomethingVeryNew.Designer.cs">
+      <DependentUpon>201909012016145_SomethingVeryNew.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -276,6 +289,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="XmlDocuments\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -305,6 +319,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908281424333_Initial3.resx">
       <DependentUpon>201908281424333_Initial3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909011919032_XmlAdded.resx">
+      <DependentUpon>201909011919032_XmlAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909011928120_XmlAdded1.resx">
+      <DependentUpon>201909011928120_XmlAdded1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909011939051_XmlAdded2.resx">
+      <DependentUpon>201909011939051_XmlAdded2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909012016145_SomethingVeryNew.resx">
+      <DependentUpon>201909012016145_SomethingVeryNew.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

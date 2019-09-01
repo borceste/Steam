@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Drawing;
 using System.ComponentModel.DataAnnotations;
+using System.Xml;
+using System.IO;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Steam.Models
 {
@@ -13,6 +16,8 @@ namespace Steam.Models
         public int Id { get; set; }
         public String name { get; set; }
         public float price { get; set; }
+        public String listOfImages { get; set; }
+        [NotMapped]
         public List<string> images { get; set; }
         public string coverImage { get; set; }
         public String description { get; set; }
@@ -23,7 +28,7 @@ namespace Steam.Models
         public Genre genre { get; set; }
         public int sold { get; set; }
         public DateTime dateAdded { get; set; }
-        public Game(int Id, String name, float price, List<string> images,string coverImage,
+        public Game(int Id, String name, float price, List<string> images, string listOfImages, string coverImage,
             string description, String developer, float rating, List<Review> reviews,
             float discount, Genre genre, int sold, DateTime dateAdded)
         {
@@ -31,6 +36,7 @@ namespace Steam.Models
         this.name = name;
         this.price = price;
         this.images = images;
+        this.listOfImages = listOfImages;
         this.coverImage = coverImage;
         this.description = description;
         this.developer = developer;
@@ -45,7 +51,7 @@ namespace Steam.Models
         {
             discount = 0;
             price = 0;
-            images = new List<string>();
+            //images = new List<string>();
             reviews = new List<Review>();
             sold = 0;
             dateAdded = DateTime.Now;
